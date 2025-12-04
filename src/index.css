@@ -16,3 +16,57 @@ body {
   color: white; /* optional */
 }
 
+/* In globals.css or index.css */
+/* .scroll-card {
+  transition: all 0.8s ease-out;
+}
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll linear infinite;
+} */
+
+
+.all-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 40px 0;
+}
+
+/* SECTION ANIMATION */
+.section {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.8s ease-out forwards;
+}
+
+/* delay for natural stagger effect */
+.section:nth-child(1) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.3s; }
+.section:nth-child(5) { animation-delay: 0.5s; }
+.section:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MODERN DIVIDER */
+.divider {
+  width: 90%;
+  height: 2px;
+  margin: 0 auto;
+  background: linear-gradient(to right, transparent, #999, transparent);
+  opacity: 0.4;
+}
+
