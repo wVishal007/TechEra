@@ -85,7 +85,7 @@ const Home = () => {
           />
 
           <h1 className="text-6xl font-extrabold tracking-wide drop-shadow-[0_0_20px_#00eaff]">
-            TECHERA
+            TechEra
           </h1>
 
           <p className="text-lg text-cyan-200 opacity-80">
