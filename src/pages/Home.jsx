@@ -67,9 +67,6 @@ const Home = () => {
 
     {/* THREE.js Background */}
     <div ref={mountRef} className="absolute inset-0 -z-10 opacity-70"></div>
-
-    <Navbar />
-
     <div className="relative z-10 flex flex-col items-center w-full text-white">
 
       {/* HERO SECTION */}
