@@ -1,21 +1,46 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import logo from "../assets/logo.jpg";
 import Card from "../components/additional/FlipCard";
 import Navbar from "../components/Navbar";
-import MemberDisplay from '../components/additional/MembersDisplay'
+import MemberDisplay from "../components/additional/MembersDisplay";
+import Information from "../components/Information";
+import Loadpage from "../components/Loadpage";
+import founder from '../assets/teamImages/founder-techera.jpg'
+import cofounder1 from '../assets/teamImages/cofounder-1.jpg'
+import cofounder2 from '../assets/teamImages/cofounder-2.jpg'
 
 const details = [
-  { name: "Aditya", post: "Founder", image: "https://picsum.photos/200?random=1" },
-  { name: "Random", post: "Co-Founder", image: "https://picsum.photos/200?random=2" },
-  { name: "Random2", post: "Co-Founder", image: "https://picsum.photos/200?random=3" },
+  {
+    name: "Aditya Choubey",
+    post: "Founder",
+    image: founder,
+  },
+  {
+    name: "Arnav Das",
+    post: "Co-Founder",
+    image: cofounder1,
+  },
+  {
+    name: "Amrita Singh",
+    post: "Co-Founder",
+    image: cofounder2,
+  },
 ];
 
 const Home = () => {
   const mountRef = useRef(null);
+  // const [Load, setLoad] = useState(true);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoad(false);
+  //   }, 10000);
+  // }, []);
 
   useEffect(() => {
+    // if (Load) return;
     const mount = mountRef.current;
     const scene = new THREE.Scene();
 
@@ -62,58 +87,56 @@ const Home = () => {
     };
   }, []);
 
+  // if (Load) {
+  //   return <Loadpage />;
+  // }
+
   return (
-  <div className="relative min-h-screen pt-24 overflow-hidden">
+    <div className="relative min-h-screen pt-24 overflow-hidden">
+      {/* THREE.js Background */}
+      <div ref={mountRef} className="absolute inset-0 -z-10 opacity-70"></div>
+      <div className="relative z-10 flex flex-col items-center w-full text-white">
+        {/* HERO SECTION */}
+        <div className="flex flex-col md:flex-row-reverse justify-between items-center w-full max-w-7xl px-8 md:px-16 mt-10">
+          {/* LEFT SIDE – LOGO + TITLE */}
+          <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left gap-3">
+            <img
+              src={logo}
+              alt="logo"
+              className="w-32 h-32 rounded-full shadow-xl border border-cyan-400 animate-pulse"
+            />
 
-    {/* THREE.js Background */}
-    <div ref={mountRef} className="absolute inset-0 -z-10 opacity-70"></div>
-    <div className="relative z-10 flex flex-col items-center w-full text-white">
+            <h1 className="text-6xl font-extrabold tracking-wide drop-shadow-[0_0_20px_#00eaff]">
+              TechEra
+            </h1>
 
-      {/* HERO SECTION */}
-      <div className="flex flex-col md:flex-row-reverse justify-between items-center w-full max-w-7xl px-8 md:px-16 mt-10">
+            <p className="text-lg text-cyan-200 opacity-80">
+              Empowering Tech. Empowering Community.
+            </p>
+          </div>
 
-        {/* LEFT SIDE – LOGO + TITLE */}
-        <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left gap-3">
-
-          <img
-            src={logo}
-            alt="logo"
-            className="w-32 h-32 rounded-full shadow-xl border border-cyan-400 animate-pulse"
-          />
-
-          <h1 className="text-6xl font-extrabold tracking-wide drop-shadow-[0_0_20px_#00eaff]">
-            TechEra
-          </h1>
-
-          <p className="text-lg text-cyan-200 opacity-80">
-            Empowering Tech. Empowering Community.
-          </p>
+          {/* RIGHT SIDE – MEMBER COUNTER */}
+          <div className="mt-10 md:mt-0">
+            <MemberDisplay number="1000" />
+          </div>
         </div>
 
-        {/* RIGHT SIDE – MEMBER COUNTER */}
-        <div className="mt-10 md:mt-0">
-          <MemberDisplay number="1000" />
-        </div>
+        {/* CARD SECTION */}
+        <div className="w-full max-w-6xl mt-20">
+          <h2 className="text-3xl font-bold text-cyan-300 text-center mb-10 drop-shadow-[0_0_10px_#00eaff]">
+            Our Leadership Team
+          </h2>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 mb-4 md:grid-cols-3 gap-10 justify-items-center">
+            {details.map((person, idx) => (
+              <Card key={idx} data={person} />
+            ))}
+          </div>
+        </div>
+        <Information />
       </div>
-
-      {/* CARD SECTION */}
-      <div className="w-full max-w-6xl mt-20">
-        <h2 className="text-3xl font-bold text-cyan-300 text-center mb-10 drop-shadow-[0_0_10px_#00eaff]">
-          Our Leadership Team
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 mb-4 md:grid-cols-3 gap-10 justify-items-center">
-          {details.map((person, idx) => (
-            <Card key={idx} data={person} />
-          ))}
-        </div>
-      </div>
-
     </div>
-  </div>
-);
-;
+  );
 };
 
 export default Home;
